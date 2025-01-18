@@ -64,7 +64,6 @@ namespace Render
     }
 }
 
-// Create transparent window
 HWND CreateTransparentWindow(HINSTANCE hInstance) {
     WNDCLASS wc = {};
     wc.lpfnWndProc = WndProc;
@@ -142,7 +141,6 @@ void InitWin(HWND uHwnd)
 
 void main_thread()
 {
-    // Create the transparent window
     HINSTANCE hInstance = GetModuleHandle(NULL);
     hwnd = CreateTransparentWindow(hInstance);
 
@@ -151,7 +149,6 @@ void main_thread()
         return;
     }
 
-    // Show the window
     ShowWindow(hwnd, SW_SHOW);
     UpdateWindow(hwnd);
     SetWindowLong(hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) | WS_EX_TRANSPARENT | WS_EX_LAYERED);
@@ -186,7 +183,7 @@ void main_thread()
 
         ImGui::Render();
 
-        const float clear_color[4] = { 0.0f, 0.0f, 0.0f, 0.0f }; // Transparent background
+        const float clear_color[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
         g_pd3dDeviceContext->OMSetRenderTargets(1, &g_mainRenderTargetView, nullptr);
         g_pd3dDeviceContext->ClearRenderTargetView(g_mainRenderTargetView, clear_color);
         ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
