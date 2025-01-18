@@ -145,7 +145,7 @@ void main_thread()
     hwnd = CreateTransparentWindow(hInstance);
 
     if (!hwnd) {
-        MessageBoxA(0, "Failed to create transparent window", "Error", 0);
+        msg("failed to create window", "err");
         return;
     }
 
